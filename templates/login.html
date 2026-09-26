@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=1.0.1">
+    <link rel="stylesheet" href="/eddi/static/css/main.css?v=1.0.1">
+    <link rel="stylesheet" href="/eddi/static/css/login.css?v=1.0.1">
+</head>
+<body>
+    <div id="login" class="login-dash">
+        <form id="login-form" class="contact-form" autocomplete="on">
+            <div class="form-group">
+              <label>Benutername</label>
+              <input type="text" name="username" id="username" class="form-input" placeholder="Username" autocomplete="username" required>
+            </div>
+            <div class="form-group">
+              <label>Passwort</label>
+              <input type="password" name="password" id="password" class="form-input" placeholder="*****" autocomplete="current-password" required>
+            </div>
+            <button type="submit" onclick="showToast('✅abgesendet')" class="btn">Anmelden</button>
+
+          </form>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+<script src="/eddi/static/js/login.js"></script>
+<script src="/eddi/static/js/main.js"></script>
+</body>
+</html>

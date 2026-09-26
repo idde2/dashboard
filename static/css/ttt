@@ -1,0 +1,26 @@
+.nav-toggle {
+    position: fixed;
+    top: 10px;
+    left: 180px;
+    width: 90px;
+    height: 30px;
+    font-size: 20px;
+    background-color: rgba(30, 30, 30, 0.9);
+    color: white;
+    border: none;
+    border-radius: 10%;
+    cursor: pointer;
+    z-index: 1100;
+    /* transform: translatex(60px); */
+}
+.nav-toggle:hover {
+    color: #00ff00;
+    transform: scale(1.15);
+    transition: transform 0.5s ease;
+    transition: color 0.1s ease;
+}
+.nav-toggle:active {
+   color: #00ff08;
+   transform: scale(1.2);
+   transition: transform 0.1s ease;
+}

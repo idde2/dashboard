@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+{% include 'main.html' %}
+
+<div class="dashboard-container">
+    
+    <!-- Card 1: Resources -->
+    <div class="card resources-card">
+        <div class="card-header">System-Auslastung</div>
+        <div class="gauges-container">
+            
+            <!-- RAM Gauge -->
+            <div class="gauge-item">
+                <span class="gauge-label">RAM</span>
+                <div class="gauge-svg-wrapper">
+                    <svg class="gauge-svg" viewBox="0 0 100 100">
+                        <circle class="gauge-bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="gauge-progress ram-progress" id="ram-circle" cx="50" cy="50" r="40" style="stroke-dasharray: 251.2; stroke-dashoffset: 251.2;"></circle>
+                    </svg>
+                    <div class="gauge-text" id="ram-text">{{ data.ram }}%</div>
+                </div>
+            </div>
+
+            <!-- CPU Gauge -->
+            <div class="gauge-item">
+                <span class="gauge-label">CPU</span>
+                <div class="gauge-svg-wrapper">
+                    <svg class="gauge-svg" viewBox="0 0 100 100">
+                        <circle class="gauge-bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="gauge-progress cpu-progress" id="cpu-circle" cx="50" cy="50" r="40" style="stroke-dasharray: 251.2; stroke-dashoffset: 251.2;"></circle>
+                    </svg>
+                    <div class="gauge-text" id="cpu-text">{{ data.cpu }}%</div>
+                </div>
+            </div>
+
+            <!-- ROM Gauge -->
+            <div class="gauge-item">
+                <span class="gauge-label">ROM</span>
+                <div class="gauge-svg-wrapper">
+                    <svg class="gauge-svg" viewBox="0 0 100 100">
+                        <circle class="gauge-bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="gauge-progress rom-progress" id="rom-circle" cx="50" cy="50" r="40" style="stroke-dasharray: 251.2; stroke-dashoffset: 251.2;"></circle>
+                    </svg>
+                    <div class="gauge-text" id="rom-text">{{ data.rom }}%</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- Card 2: Ping -->
+    <div class="card ping-card">
+        <div class="card-header">Latenz / Ping</div>
+        <div class="ping-grid">
+            <div class="ping-element" id="ping-cloudflare">
+                <span class="ping-title">Backend → Cloudflare</span>
+                <span class="ping-value" id="ping-cf-val">{{ ping[0] }} ms</span>
+            </div>
+            <div class="ping-element" id="ping-wg">
+                <span class="ping-title">Backend → PC (WG)</span>
+                <span class="ping-value" id="ping-wg-val">{{ ping[1] }} ms</span>
+            </div>
+            <div class="ping-element" id="ping-client">
+                <span class="ping-title">Client → Backend</span>
+                <span class="ping-value" id="ping-client-val">Messung...</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benutzerverwaltung</title>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+</head>
+<body>
+{% include 'main.html' %}
+
+<div class="container">
+    <h1 class="page-title">Benutzerverwaltung</h1>
+<button class="btn-create-user" onclick="openCreateUserModal()">Neuen Benutzer hinzufügen</button>
+
+    <div class="content" id="content">
+        {% for name, infos in data.items() %}
+            <div class="element" data-name="{{ name }}" data-infos="{{ infos | tojson | forceescape }}">
+                <div class="user-card-header">
+                    <span class="user-icon">👤</span>
+                    <span class="name">{{ name }}</span>
+                </div>
+                <div class="user-card-roles">
+                    {% for perm in infos.perms %}
+                        <span class="role-badge">{{ perm }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <div id="message-container" class="modal-backdrop" style="display: none;">
+        <div class="modal-content">
+            <a class="closebtn" onclick="closeModal()">&times;</a>
+            <h2 class="modal-title">Benutzer bearbeiten</h2>
+
+            <div class="form-group">
+                <label for="username" class="form-label">Benutzername</label>
+                <input type="text" class="form-input" id="username" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Passwort</label>
+                <input type="password" class="form-input" id="password" autocomplete="off">
+            </div>
+
+            {% for username, infos in data.items() %}
+                <div class="user-block" data-user="{{ username }}" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Berechtigungen</label>
+                        <div class="gruppen-container">
+                            <div class="gruppen-select-wrapper">
+                                <select class="perms-select-field" name="perms" multiple autocomplete="off" placeholder="Rechte auswählen...">
+                                    {% for recht in alle_rechte %}
+                                        <option value="{{ recht }}" {% if recht in infos.perms %}selected{% endif %}>
+                                            {{ recht }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="gruppen-dropdown-arrow">▼</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <button class="btn btn-save" id="save-btn">Änderungen speichern</button>
+        </div>
+    </div>
+
+    <!-- Create User Modal -->
+    <div id="create-user-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-content">
+            <a class="closebtn" onclick="closeCreateUserModal()">&times;</a>
+            <h2 class="modal-title">Neuen Benutzer hinzufügen</h2>
+
+            <div class="form-group">
+                <label for="new-username" class="form-label">Benutzername</label>
+                <input type="text" class="form-input" id="new-username" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="new-password" class="form-label">Passwort</label>
+                <input type="password" class="form-input" id="new-password" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Berechtigungen</label>
+                <div class="gruppen-container">
+                    <div class="gruppen-select-wrapper">
+                        <select id="new-perms-select" class="perms-select-field" name="perms" multiple autocomplete="off" placeholder="Rechte auswählen...">
+                            {% for recht in alle_rechte %}
+                                <option value="{{ recht }}">
+                                    {{ recht }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="gruppen-dropdown-arrow">▼</div>
+                </div>
+            </div>
+
+            <button class="btn btn-save" onclick="createUser()">Benutzer erstellen</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,419 @@
+/* API Keys Page specific styles */
+
+.apikeys-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 95px 24px 40px 24px;
+    box-sizing: border-box;
+}
+
+/* Glassmorphic Card */
+.card {
+    background: rgba(36, 37, 38, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: border-color 0.2s;
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.card-header {
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
+}
+
+.apikey-description {
+    font-size: 14px;
+    color: #b0b3b8;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+/* API Keys List */
+.apikey-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.apikey-item {
+    background: rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.apikey-item:hover {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.apikey-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.apikey-user-icon {
+    font-size: 20px;
+}
+
+.apikey-username {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e4e6eb;
+}
+
+.apikey-key-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.apikey-badge-container {
+    background: #191a1b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 6px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.apikey-masked {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: #00ff88;
+    cursor: pointer;
+    user-select: none;
+    letter-spacing: 0.5px;
+}
+
+.copy-icon {
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0.5;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+.copy-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.copy-icon:active {
+    transform: scale(0.9);
+}
+
+.apikey-none {
+    font-size: 14px;
+    color: #72767d;
+    font-style: italic;
+}
+
+.btn-create-inline {
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-create-inline:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+.btn-create-inline:active {
+    transform: translateY(0);
+}
+
+.btn-revoke-inline {
+    background: rgba(255, 71, 87, 0.12);
+    border: 1px solid rgba(255, 71, 87, 0.25);
+    color: #ff4757;
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.btn-revoke-inline:hover {
+    background: rgba(255, 71, 87, 0.25);
+    border-color: #ff4757;
+    transform: scale(1.05);
+}
+
+.btn-revoke-inline:active {
+    transform: scale(0.95);
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1200;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #1a1b1c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 480px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    color: #e4e6eb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.key-display-wrapper {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.key-display-box {
+    flex-grow: 1;
+    background: #111;
+    border: 1px solid #ff9f43;
+    color: #ff9f43;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    text-align: center;
+    word-break: break-all;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-modal-copy {
+    background: #ff9f43;
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    padding: 0 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.btn-modal-copy:hover {
+    background: #ee8a2c;
+}
+
+.btn-save {
+    background-color: #3a3b3c;
+    color: #fff;
+    border: 1px solid #4e4f50;
+    border-radius: 8px;
+    padding: 10px 24px;
+    width: auto;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    margin-top: 10px;
+}
+
+.btn-save:hover {
+    background-color: #4e4f50;
+}
+
+.btn-edit-inline {
+    background: rgba(77, 174, 193, 0.12);
+    border: 1px solid rgba(77, 174, 193, 0.25);
+    color: #4daec1;
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.btn-edit-inline:hover {
+    background: rgba(77, 174, 193, 0.25);
+    border-color: #4daec1;
+    transform: scale(1.05);
+}
+
+.btn-edit-inline:active {
+    transform: scale(0.95);
+}
+
+.btn-cancel {
+    background-color: transparent;
+    color: #b0b3b8;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+/* Permissions Grid in Modal */
+.perms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 24px;
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 6px;
+    box-sizing: border-box;
+}
+
+.perms-grid::-webkit-scrollbar {
+    width: 6px;
+}
+.perms-grid::-webkit-scrollbar-track {
+    background: transparent;
+}
+.perms-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+/* Permission Card Style */
+.perm-card {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.perm-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.perm-card input[type="checkbox"] {
+    position: relative;
+    right: 10px;
+    top: 50%;
+    opacity: 0.9;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+}
+
+.perm-card-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+}
+
+.perm-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #e4e6eb;
+    transition: color 0.2s;
+}
+
+.perm-badge-crit {
+    font-size: 10px;
+    font-weight: 600;
+    color: #ff7675;
+    background: rgba(255, 118, 117, 0.12);
+    padding: 2px 6px;
+    border-radius: 4px;
+    width: fit-content;
+    border: 1px solid rgba(255, 118, 117, 0.2);
+}
+
+/* Checked State */
+.perm-card.checked {
+    background: rgba(77, 174, 193, 0.12);
+    border-color: #4daec1;
+}
+
+.perm-card.checked .perm-name {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Disabled/Locked State */
+.perm-card.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.perm-card.disabled:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+}

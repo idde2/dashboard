@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WireGuard VPN Tunnel</title>
+</head>
+<body>
+{% include 'main.html' %}
+
+<div class="wg-container">
+    <h1 class="page-title">WireGuard VPN Tunnel</h1>
+    
+    <div class="wg-layout">
+        <!-- Left Column: Tunnel List & Controls -->
+        <div class="card wg-card-left">
+            <div class="card-header">Tunnel-Verbindungen</div>
+            <div class="wg-list">
+                {% for ip in ips %}
+                <a href="/eddi/wg/sh/{{ip}}" class="wg-item {% if conf_raw and ip in conf_raw %}active{% elif selected_ip and ip == selected_ip %}active{% endif %}">
+                    <span class="wg-icon">🔒</span>
+                    <span class="wg-ip">{{ip}}</span>
+                </a>
+                {% endfor %}
+                {% if not ips %}
+                <span class="apikey-none">Keine Verbindungen vorhanden</span>
+                {% endif %}
+            </div>
+            
+            <div class="wg-controls">
+                <button onclick="window.location.href = '/eddi/wg/wg'" class="btn btn-add">Neue Verbindung erstellen</button>
+                {% if conf_raw or selected_ip %}
+                <button onclick="confirmDelete()" class="btn btn-delete">Verbindung löschen</button>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Right Column: Configuration & QR Code -->
+        <div class="card wg-card-right">
+            {% if conf %}
+                <div class="card-header">Konfiguration: {{ conf_raw }}</div>
+                <div class="wg-details">
+                    <div class="wg-conf-wrapper" onclick="window.location.href = '/eddi/wg/file/{{ conf_raw }}'" title="Klicken zum Herunterladen">
+                        <pre>{{ conf }}</pre>
+                    </div>
+                    {% if qr %}
+                    <div class="wg-qr-wrapper">
+                        <h3>QR-Code für Mobilgeräte</h3>
+                        <img class="wg-qr-img" src="{{qr}}" alt="WireGuard QR-Code">
+                    </div>
+                    {% endif %}
+                </div>
+            {% elif selected_ip %}
+                <div class="wg-placeholder">
+                    <span class="wg-placeholder-icon">⚠️</span>
+                    <p>Die Verbindung <strong>{{ selected_ip }}</strong> ist fehlerhaft oder beschädigt.<br>Bitte lösche sie über den Button links.</p>
+                </div>
+            {% else %}
+                <div class="wg-placeholder">
+                    <span class="wg-placeholder-icon">🌐</span>
+                    <p>Wähle eine Verbindung aus der Liste aus, um die Konfiguration und den QR-Code anzuzeigen.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete() {
+        const pathParts = window.location.pathname.split('/');
+        const ip = pathParts.pop() || pathParts.pop(); // Get last non-empty segment which is the IP
+        if (ip && confirm(`Möchtest du die VPN-Verbindung für die IP "${ip}" wirklich unwiderruflich löschen?`)) {
+            window.location.href = "/eddi/wg/rm/" + ip;
+        }
+    }
+</script>
+</body>
+</html>

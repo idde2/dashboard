@@ -1,0 +1,67 @@
+body {
+    background-color: #1a1a1a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    padding: 80px 20px 40px 20px;
+    box-sizing: border-box;
+}
+
+.page-title {
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.log-box {
+    width: 100%;
+    height: 60vh;
+    background-color: #121212;
+    border: 1px solid #3a3b3c;
+    border-radius: 12px;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #39ff14;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.log-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.log-box::-webkit-scrollbar-track {
+    background: #121212;
+    border-radius: 0 12px 12px 0;
+}
+
+.log-box::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+.log-box::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+.empty-log {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    margin-top: 50px;
+}

@@ -1,0 +1,29 @@
+<head>
+    <link rel="stylesheet" href="/eddi/static/css/main.css?v=1.0.1">
+    <link rel="stylesheet" href="/eddi/static/css/{{name}}.css?v=1.0.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{name}}</title>
+</head>
+
+<div class="toast" id="toast"></div>
+
+
+<div class="nav" id="nav">
+    {% if 'admin' in user_perms or 'dashboard' in user_perms %}<a href="/eddi/">DASHBOARD</a>{% endif %}
+    {% if 'admin' in user_perms or 'wg' in user_perms %}<a href="/eddi/wg">wg-tunnel</a>{% endif %}
+    {% if 'admin' in user_perms or 'log' in user_perms %}<a href="/eddi/log">log</a>{% endif %}
+    {% if 'admin' in user_perms or 'kontakt' in user_perms %}<a href="/eddi/kontakt">kontakt</a>{% endif %}
+    {% if 'admin' in user_perms or 'cmd' in user_perms %}<a href="/eddi/cmd">cmd</a>{% endif %}
+    {% if 'admin' in user_perms or 'file' in user_perms %}<a href="/eddi/file">files</a>{% endif %}
+    {% if 'admin' in user_perms or 'users' in user_perms %}<a href="/eddi/users">users</a>{% endif %}
+    {% if 'admin' in user_perms or 'api' in user_perms %}<a href="/eddi/apikeys">api</a>{% endif %}
+    <a href="/eddi/logout">LOGOUT</a>
+</div>
+
+
+</body>
+<button onclick="openNav()" id="btn" class="btn-hamburger">☰</button>
+
+<script src="/eddi/static/js/main.js" defer></script>
+<script src="/eddi/static/js/{{name}}.js" defer></script>
+

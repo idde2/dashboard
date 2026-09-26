@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API-Keys Verwaltung</title>
+</head>
+<body>
+{% include 'main.html' %}
+
+<div class="apikeys-container">
+    <div class="card apikey-card">
+        <div class="card-header">API-Keys (Statisch)</div>
+        <div class="apikey-description">
+            Statische API-Keys zur externen Steuerung der API. Format: <code>username_40zeichen</code>.
+        </div>
+        
+        <div class="apikey-list">
+            {% if has_api_perm %}
+                <!-- Admin/API view: show all users -->
+                {% for username, userinfo in all_users.items() %}
+                    <div class="apikey-item" data-username="{{ username }}">
+                        <div class="apikey-user-info">
+                            <span class="apikey-user-icon">👤</span>
+                            <span class="apikey-username">{{ username }}</span>
+                        </div>
+                        <div class="apikey-key-wrapper">
+                            {% if username in apikeys %}
+                                <div class="apikey-badge-container">
+                                     <span class="apikey-masked" title="Klicken zum Kopieren (teilweise maskiert)" onclick="copyToClipboard('{{ apikeys[username]["key"] }}')">
+                                         {{ (apikeys[username]["key"])[:4] }}********************
+                                     </span>
+                                     <span class="copy-icon" onclick="copyToClipboard('{{ apikeys[username]["key"] }}')" title="Kopieren">📋</span>
+                                </div>
+                                <button class="btn-edit-inline" onclick="editKey('{{ username }}')" title="Berechtigungen bearbeiten">⚙️</button>
+                                <button class="btn-revoke-inline" onclick="confirmRevoke('{{ username }}')" title="Key widerrufen">❌</button>
+                            {% else %}
+                                <span class="apikey-none">Kein Key vorhanden</span>
+                                <button class="btn-create-inline" onclick="createKey('{{ username }}')">Erstellen</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <!-- Normal user view: show only current user's key -->
+                <div class="apikey-item" data-username="{{ current_user }}">
+                    <div class="apikey-user-info">
+                        <span class="apikey-user-icon">👤</span>
+                        <span class="apikey-username">{{ current_user }}</span>
+                    </div>
+                    <div class="apikey-key-wrapper">
+                        {% if current_user in apikeys %}
+                            <div class="apikey-badge-container">
+                                 <span class="apikey-masked" title="Klicken zum Kopieren (teilweise maskiert)" onclick="copyToClipboard('{{ apikeys[current_user]["key"] }}')">
+                                         {{ (apikeys[current_user]["key"])[:4] }}********************
+                                 </span>
+                                 <span class="copy-icon" onclick="copyToClipboard('{{ apikeys[current_user]["key"] }}')" title="Kopieren">📋</span>
+                            </div>
+                            <button class="btn-revoke-inline" onclick="confirmRevoke('{{ current_user }}')" title="Key widerrufen">❌</button>
+                        {% else %}
+                            <span class="apikey-none">Kein Key vorhanden</span>
+                            <button class="btn-create-inline" onclick="createKey('{{ current_user }}')">Erstellen</button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+    <!-- Edit Key Modal -->
+    <div id="edit-key-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-content">
+            <h3 class="modal-title" style="margin-bottom: 10px;">API-Key Berechtigungen bearbeiten</h3>
+            <p id="edit-username" style="margin-bottom: 10px; font-weight: bold;">Benutzer: </p>
+            <div id="perms-checkboxes" style="margin-bottom: 20px;">
+                <!-- Checkboxes will be populated by JS -->
+            </div>
+            <button class="btn-save" onclick="savePermissions()" style="margin-top: 10px;">Speichern</button>
+            <button class="btn-cancel" onclick="closeEditModal()" style="margin-top: 10px; margin-left: 10px;">Abbrechen</button>
+        </div>
+    </div>
+    <!-- Existing key modal -->
+    <div id="key-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-content">
+            <h3 class="modal-title" style="margin-bottom: 10px;">API-Key erfolgreich erstellt</h3>
+            <p style="font-size: 13px; color: #b0b3b8; margin-bottom: 20px; text-align: center; line-height: 1.4;">
+                Bitte kopiere diesen Key jetzt. Er wird danach nicht mehr vollständig angezeigt!
+            </p>
+            <div class="key-display-wrapper">
+                <div class="key-display-box" id="new-key-value" title="Klicken zum Kopieren"></div>
+                <button class="btn-modal-copy" id="btn-modal-copy-action" onclick="copyModalKey()">Kopieren</button>
+            </div>
+            <button class="btn-save" onclick="closeKeyModal()" style="margin-top: 20px;">Schließen</button>
+        </div>
+    </div>
+    <script>
+        const apikeysData = {{ apikeys|tojson }};
+        const permsList = {{ perms_list|tojson if perms_list is defined else '[]' }};
+        const hasApiPerm = {{ has_api_perm|tojson }};
+
+        function closeEditModal() {
+            document.getElementById('edit-key-modal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

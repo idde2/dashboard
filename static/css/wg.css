@@ -1,0 +1,247 @@
+/* Z:\home\eddi\dashboard\static\css\wg.css */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #1a1a1a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wg-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 20px 40px 20px;
+    box-sizing: border-box;
+}
+
+.page-title {
+    color: #fff;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.wg-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 24px;
+    width: 100%;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .wg-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Glassmorphic Card */
+.card {
+    background: rgba(36, 37, 38, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: border-color 0.2s;
+    color: #e4e6eb;
+}
+
+.card-header {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
+}
+
+/* Left Column list */
+.wg-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 350px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 5px;
+}
+
+.wg-list::-webkit-scrollbar {
+    width: 6px;
+}
+.wg-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.wg-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+.wg-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.wg-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    color: #e4e6eb;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.1s;
+    cursor: pointer;
+}
+
+.wg-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #4daec1;
+    transform: translateX(3px);
+}
+
+.wg-item.active {
+    background: rgba(77, 174, 193, 0.15);
+    border-color: #4daec1;
+    color: #fff;
+    font-weight: 600;
+}
+
+.wg-icon {
+    font-size: 16px;
+}
+
+.wg-ip {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* Controls */
+.wg-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn {
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    text-align: center;
+    width: 100%;
+}
+
+.btn-add {
+    background-color: #10b981;
+    color: #fff;
+}
+
+.btn-add:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+}
+
+.btn-delete {
+    background-color: rgba(255, 71, 87, 0.15);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    color: #ff4757;
+}
+
+.btn-delete:hover {
+    background-color: rgba(255, 71, 87, 0.25);
+    transform: translateY(-1px);
+}
+
+/* Right Column Details */
+.wg-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wg-conf-wrapper {
+    background: #111213;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 16px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.wg-conf-wrapper:hover {
+    background: #161819;
+    border-color: #4daec1;
+}
+
+.wg-conf-wrapper pre {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    color: #00ff88;
+    white-space: pre-wrap !important;
+    word-break: break-all;
+}
+
+.wg-qr-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.wg-qr-wrapper h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #b0b3b8;
+    font-weight: 500;
+}
+
+.wg-qr-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Placeholder */
+.wg-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: #72767d;
+    text-align: center;
+}
+
+.wg-placeholder-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.wg-placeholder p {
+    font-size: 15px;
+    margin: 0;
+}

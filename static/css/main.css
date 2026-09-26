@@ -1,0 +1,121 @@
+body {
+    display: flex;
+    font-family: 'Arial', sans-serif;
+    background-color: #222;
+    color: #eee;
+    margin: 0;
+    flex-direction: column;
+
+}
+
+.nav {
+    background-color: rgba(30, 30, 30, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 100%;
+    color: white;
+    padding-top: 20px;
+    transform: translateX(-240px);
+    transition: transform 0.5s ease;
+    z-index: 1000;
+}
+.nav.open {
+    transform: translateX(0);
+    transition: transform 0.5s ease;
+}
+
+.nav a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    opacity: 1;
+}
+.nav a:hover {
+    background-color: rgba(50, 50, 50, 0.9);
+    color: #00ff00;
+    transform: scale(1.05);
+    transition: transform 0.1s ease;
+    text-decoration: none;
+}
+
+
+
+.btn-hamburger {
+    position: fixed;
+    top: 10px;
+    left: 180px;
+    z-index: 1100;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    background-color: rgba(50, 50, 50, 0.9);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s ease, color 0.1s ease;
+    transform: translateX(-160px);
+    transition: transform 0.5s ease;
+}
+.btn-hamburger.open {
+    transform: translateX(10px);
+    transition: transform 0.5s ease;
+}
+
+
+.btn-hamburger:hover {
+    color: #00ff00;
+    width: 120px;
+    justify-content: flex-start;
+    padding-left: 14px;
+}
+
+.btn-hamburger:hover::after {
+    content: "menu";
+    font-size: 18px;
+    margin-left: 10px;
+    animation: fadeInHamburger 0.2s ease forwards;
+}
+
+@keyframes fadeInHamburger {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.btn-hamburger:active {
+   color: #00ff08;
+   /* transform: scale(1.1); */
+}
+
+.toast {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  backdrop-filter: blur(12px);
+  transition: transform 0.4s ease;
+  background: #111;
+  color: #e5e7eb;
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 1009;
+}
+.toast.show {
+  transition: transform 0.4s ease;
+  transform: translateX(-50%) translateY(0);
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        {% include 'main.html' %}
+
+        <div class="search-container">
+            <input type="text" id="search" class="search" autocomplete="off" placeholder="Suche">
+            <select id="search-select" class="search">
+                <option value="time">Datum neu</option>
+                <option value="time2">Datum alt</option>
+                <option value="name">Name az</option>
+                <option value="name2">Name za</option>
+            </select>
+        </div>
+
+        <div id="message-container" class="message" style="display: none;">
+            <a class="closebtn" onclick="this.parentElement.style.display='none';">&times;</a>
+            <p id="message"></p>
+        </div>
+
+        <h1 class="title"></h1>
+        <div class="content">
+            {% for id,name,email,msg,time in content %}
+                <div class="element" data-time="{{ time }}">
+                    <p class="name">Name: {{ name }}</p>
+                    <p class="email">Email: {{ email }}</p>
+                    <p class="time">Datum: {{ time }}</p>
+                    <p>msg: <a onclick="showMessage('{{ msg }}')" class="msg"> {{ msg[:10] }}</a></p>
+                    <p class="loeschen" onclick="deleteMessage('{{ id }}')">löschen</p>
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

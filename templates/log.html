@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Systemprotokoll</title>
+    </head>
+    <body>
+        {% include 'main.html' %}
+
+        <div class="container">
+            <h1 class="page-title">Systemprotokoll</h1>
+            <div class="log-box">{% if log_content %}{{ log_content | e }}{% else %}<div class="empty-log">Keine Log-Einträge vorhanden.</div>{% endif %}</div>
+        </div>
+    </body>
+</html>
